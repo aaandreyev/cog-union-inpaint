@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       model_name:
-        description: 'cog-union-inpaint'
+        description: 'aaandreyev/uib6t86vr987bp8n9um'
         required: true
 
 jobs:
