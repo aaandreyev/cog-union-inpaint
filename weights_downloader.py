@@ -71,6 +71,7 @@ class WeightsDownloader:
         start = time.time()
         subprocess.check_call(
             ["pget", "--log-level", "warn", "-xf", url, dest], close_fds=False
+            # ["pget", "-C", "4", url, dest], close_fds=False
         )
         elapsed_time = time.time() - start
         try:

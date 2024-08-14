@@ -92,7 +92,7 @@ class WeightsManifest:
         def generate_weights_map(keys, dest):
             return {
                 key: {
-                    "url": f"{BASE_URL}/{dest}/{key}.tar",
+                    "url": f"{BASE_URL}/{dest}/{key}.tar" if key != "diffusion_pytorch_model_promax.safetensors" else "https://huggingface.co/xinsir/controlnet-union-sdxl-1.0/resolve/main/diffusion_pytorch_model_promax.safetensors",
                     "dest": f"{MODELS_PATH}/{dest}",
                 }
                 for key in keys

@@ -45,6 +45,10 @@ def main(filenames):
             weight_files.append(filename)
     download_weight_files(weight_files)
 
+# if __name__ == "__main__":
+#     filenames = ["workflow_api.json"]
+#     main(["../workflow_api.json"])
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python get_weights.py <filename> [<filename> ...] or python get_weights.py <weights.txt> or python get_weights.py <workflow.json>")
