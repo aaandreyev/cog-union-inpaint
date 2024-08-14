@@ -21,6 +21,9 @@ build:
     - scipy
     - tqdm
     - psutil
+    - matplotlib
+    - cachetools
+    - numpy<2
     - spandrel
     - soundfile
     - kornia>=0.7.1

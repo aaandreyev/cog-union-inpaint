@@ -6,5 +6,15 @@
   {
     "repo": "https://github.com/kijai/ComfyUI-KJNodes",
     "commit": "adb35ee2336208a8f01dc3a9ea171da57d95ead9"
+  },
+    {
+    "repo": "https://github.com/ltdrdata/ComfyUI-Inspire-Pack",
+    "commit": "0bd92419dec46f6e41ec46c1d565e6ec3dfcc986"
+  },  {
+    "repo": "https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet",
+    "commit": "68e5cd41e43cf0ec0a052167ef2c1c1bfb3aac7d"
+  },  {
+    "repo": "https://github.com/ltdrdata/ComfyUI-Impact-Pack",
+    "commit": "6c45402b2b1cfa0a90c180948eced63007887b9e"
   }
 ]

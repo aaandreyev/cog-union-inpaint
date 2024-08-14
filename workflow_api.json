@@ -1,77 +1,109 @@
 {
-  "3": {
+  "1": {
     "inputs": {
-      "seed": 729223437052698,
-      "steps": 21,
-      "cfg": 4,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
-      "denoise": 1,
-      "model": [
-        "4",
-        0
-      ],
-      "positive": [
-        "15",
-        0
-      ],
-      "negative": [
-        "15",
-        1
-      ],
-      "latent_image": [
-        "51",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "KSampler"
-    }
-  },
-  "4": {
-    "inputs": {
-      "ckpt_name": "juggernautXL_v8Rundiffusion.safetensors"
+      "ckpt_name": "RealVisXL_V4.0_Lightning.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
       "title": "Load Checkpoint"
     }
   },
-  "6": {
+  "2": {
     "inputs": {
-      "text": "a dolphin coming out of the ocean, sunset",
+      "text": "home, living room, street, wall, night",
       "clip": [
-        "4",
+        "1",
         1
       ]
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
-      "title": "Positive"
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "3": {
+    "inputs": {
+      "text": "",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "5": {
+    "inputs": {
+      "strength": 1,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "2",
+        0
+      ],
+      "negative": [
+        "3",
+        0
+      ],
+      "control_net": [
+        "20",
+        0
+      ],
+      "image": [
+        "20",
+        1
+      ]
+    },
+    "class_type": "ACN_AdvancedControlNetApply",
+    "_meta": {
+      "title": "Apply Advanced ControlNet 🛂🅐🅒🅝"
+    }
+  },
+  "6": {
+    "inputs": {
+      "seed": 601699204119892,
+      "steps": 6,
+      "cfg": 2,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "AYS SDXL",
+      "denoise": 1,
+      "noise_mode": "GPU(=A1111)",
+      "batch_seed_mode": "incremental",
+      "variation_seed": 0,
+      "variation_strength": 0,
+      "variation_method": "linear",
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "5",
+        1
+      ],
+      "latent_image": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "KSampler //Inspire",
+    "_meta": {
+      "title": "KSampler (inspire)"
     }
   },
   "7": {
     "inputs": {
-      "text": "text, watermark",
-      "clip": [
-        "4",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "Negetive"
-    }
-  },
-  "8": {
-    "inputs": {
       "samples": [
-        "3",
+        "6",
         0
       ],
       "vae": [
-        "4",
+        "1",
         2
       ]
     },
@@ -80,9 +112,21 @@
       "title": "VAE Decode"
     }
   },
-  "11": {
+  "13": {
     "inputs": {
-      "image": "image.png",
+      "images": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "17": {
+    "inputs": {
+      "image": "/tmp/inputs/input.jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -90,139 +134,46 @@
       "title": "Load Image"
     }
   },
-  "15": {
+  "19": {
     "inputs": {
-      "strength": 0.8,
-      "start_percent": 0,
-      "end_percent": 1,
-      "positive": [
-        "6",
+      "control_type": "inpaint/outpaint",
+      "image": [
+        "17",
         0
-      ],
-      "negative": [
-        "7",
+      ]
+    },
+    "class_type": "ACN_ControlNet++InputNode",
+    "_meta": {
+      "title": "ControlNet++ Input 🛂🅐🅒🅝"
+    }
+  },
+  "20": {
+    "inputs": {
+      "name": "diffusion_pytorch_model_promax.safetensors",
+      "plus_input": [
+        "19",
         0
-      ],
-      "control_net": [
+      ]
+    },
+    "class_type": "ACN_ControlNet++LoaderAdvanced",
+    "_meta": {
+      "title": "Load ControlNet++ Model (Multi) 🛂🅐🅒🅝"
+    }
+  },
+  "40": {
+    "inputs": {
+      "pixels": [
         "17",
         0
       ],
-      "image": [
-        "54",
-        0
-      ]
-    },
-    "class_type": "ControlNetApplyAdvanced",
-    "_meta": {
-      "title": "Apply ControlNet (Advanced)"
-    }
-  },
-  "16": {
-    "inputs": {
-      "control_net_name": "diffusion_pytorch_model_promax.safetensors"
-    },
-    "class_type": "ControlNetLoader",
-    "_meta": {
-      "title": "Load ControlNet Model"
-    }
-  },
-  "17": {
-    "inputs": {
-      "type": "repaint",
-      "control_net": [
-        "16",
-        0
-      ]
-    },
-    "class_type": "SetUnionControlNetType",
-    "_meta": {
-      "title": "SetUnionControlNetType"
-    }
-  },
-  "48": {
-    "inputs": {
-      "mask": [
-        "50",
-        0
-      ]
-    },
-    "class_type": "MaskToImage",
-    "_meta": {
-      "title": "Convert Mask to Image"
-    }
-  },
-  "50": {
-    "inputs": {
-      "mask": [
-        "71",
-        1
-      ]
-    },
-    "class_type": "InvertMask",
-    "_meta": {
-      "title": "InvertMask"
-    }
-  },
-  "51": {
-    "inputs": {
-      "pixels": [
-        "54",
-        0
-      ],
       "vae": [
-        "4",
+        "1",
         2
       ]
     },
     "class_type": "VAEEncode",
     "_meta": {
       "title": "VAE Encode"
-    }
-  },
-  "54": {
-    "inputs": {
-      "x": 0,
-      "y": 0,
-      "resize_source": false,
-      "destination": [
-        "11",
-        0
-      ],
-      "source": [
-        "48",
-        0
-      ],
-      "mask": [
-        "71",
-        1
-      ]
-    },
-    "class_type": "ImageCompositeMasked",
-    "_meta": {
-      "title": "ImageCompositeMasked"
-    }
-  },
-  "71": {
-    "inputs": {
-      "image": "mask.png",
-      "upload": "image"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Load Image Mask"
-    }
-  },
-  "74": {
-    "inputs": {
-      "filename_prefix": "inpainted",
-      "images": [
-        "8",
-        0
-      ]
-    },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Save Image"
     }
   }
 }

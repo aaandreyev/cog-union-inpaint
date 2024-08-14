@@ -16,3 +16,7 @@ manifest.txt
 updated_weights.json
 downloaded_user_models/
 .cog
+.idea
+/.idea/
+.DS_Store
+.ComfyUI/models

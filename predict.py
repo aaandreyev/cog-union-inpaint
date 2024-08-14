@@ -54,26 +54,26 @@ class Predictor(BasePredictor):
     def update_workflow(self, workflow, **kwargs):
         # Below is an example showing how to get the node you need and update the inputs
 
-        positive_prompt = workflow["6"]["inputs"]
-        positive_prompt["text"] = kwargs["prompt"]
-
         input_image_url = workflow["11"]["inputs"]
         input_image_url["image"] = kwargs["image_filename"]
 
-        mask_node = workflow["71"]["inputs"]
-        mask_node["image"] = kwargs["mask_filename"]
+        positive_prompt = workflow["6"]["inputs"]
+        positive_prompt["text"] = kwargs["prompt"]
+
+        negative_prompt = workflow["7"]["inputs"]
+        negative_prompt["text"] = f"nsfw, {kwargs['negative_prompt']}"
 
         sampler = workflow["3"]["inputs"]
         sampler["cfg"] = kwargs["cfg"]
         sampler["steps"] = kwargs["steps"]
         sampler["seed"] = kwargs["seed"]
 
-
-        negative_prompt = workflow["7"]["inputs"]
-        negative_prompt["text"] = f"nsfw, {kwargs['negative_prompt']}"
-
     def predict(
         self,
+        image: Path = Input(
+            description="The image to inpaint",
+            default=None,
+        ),
         prompt: str = Input(
             default="",
         ),
@@ -81,23 +81,15 @@ class Predictor(BasePredictor):
             description="Things you do not want to see in your image",
             default="",
         ),
-        image: Path = Input(
-            description="The image to inpaint",
-            default=None,
-        ),
-        mask: Path = Input(
-            description="The image with the masked area to inpaint",
-            default=None,
-        ),
         steps: int = Input(
             description="Number of inference steps",
-            default=20,
+            default=6,
             ge=1,
             le=50,
         ),
         cfg: float = Input(
             description="Guidance scale",
-            default=4,
+            default=2,
             ge=0,
             le=20,
         ),
@@ -115,10 +107,6 @@ class Predictor(BasePredictor):
         image_filename = self.filename_with_extension(image, "image")
         self.handle_input_file(image, image_filename)
 
-        mask_filename = None
-        mask_filename = self.filename_with_extension(mask, "mask")
-        self.handle_input_file(mask, mask_filename)
-
         with open(api_json_file, "r") as file:
             workflow = json.loads(file.read())
 
@@ -127,7 +115,6 @@ class Predictor(BasePredictor):
             prompt=prompt,
             negative_prompt=negative_prompt,
             image_filename=image_filename,
-            mask_filename=mask_filename,
             seed=seed,
             steps=steps,
             cfg=cfg
@@ -140,7 +127,3 @@ class Predictor(BasePredictor):
         return optimise_images.optimise_image_files(
             output_format, output_quality, self.comfyUI.get_files(OUTPUT_DIR)
         )
-
-
-# https://i.postimg.cc/gJGFWdCZ/inpaint-full-real.png inpaint full
-# https://i.postimg.cc/hjVL9Rvp/inpaint-mask-real.png inpaint mask
