@@ -22,7 +22,6 @@ PRESETS = [
     "Kolors",
 ]
 
-
 class ComfyUI_IPAdapter_plus(CustomNodeHelper):
     @staticmethod
     def prepare(**kwargs):
