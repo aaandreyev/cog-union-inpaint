@@ -77,7 +77,8 @@ class WeightsDownloader:
                 # ["pget", "-C", "4", url, dest], close_fds=False
             )
         elapsed_time = time.time() - start
-        try:
+        file_path = os.path.join(dest, os.path.basename(weight_str))
+        if os.path.exists(file_path) and os.path.isfile(file_path):
             file_size_bytes = os.path.getsize(
                 os.path.join(dest, os.path.basename(weight_str))
             )
@@ -85,5 +86,9 @@ class WeightsDownloader:
             print(
                 f"✅ {weight_str} downloaded to {dest} in {elapsed_time:.2f}s, size: {file_size_megabytes:.2f}MB"
             )
-        except FileNotFoundError:
+        else:
+            print(f"cwd is {os.getcwd()}")
+            print(f"weight_str is {weight_str}")
+            print(f"dest is {dest}")
+            print(f"file_path is {file_path}")
             print(f"✅ {weight_str} downloaded to {dest} in {elapsed_time:.2f}s")
