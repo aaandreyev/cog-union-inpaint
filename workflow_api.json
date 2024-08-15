@@ -10,7 +10,7 @@
   },
   "2": {
     "inputs": {
-      "text": "home, living room, street, wall, night",
+      "text": " ",
       "clip": [
         "1",
         1
@@ -23,7 +23,7 @@
   },
   "3": {
     "inputs": {
-      "text": "",
+      "text": "dark, bad quality, worst quality, awful quality, distorted, blur, blurred ",
       "clip": [
         "1",
         1
@@ -63,7 +63,7 @@
   },
   "6": {
     "inputs": {
-      "seed": 601699204119892,
+      "seed": 1122864946238226,
       "steps": 6,
       "cfg": 2,
       "sampler_name": "dpmpp_2m",
@@ -87,7 +87,7 @@
         1
       ],
       "latent_image": [
-        "40",
+        "42",
         0
       ]
     },
@@ -112,21 +112,9 @@
       "title": "VAE Decode"
     }
   },
-  "13": {
-    "inputs": {
-      "images": [
-        "7",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "Preview Image"
-    }
-  },
   "17": {
     "inputs": {
-      "image": "image.png",
+      "image": "image.jpg",
       "upload": "image"
     },
     "class_type": "LoadImage",
@@ -160,20 +148,28 @@
       "title": "Load ControlNet++ Model (Multi) 🛂🅐🅒🅝"
     }
   },
-  "40": {
+  "42": {
     "inputs": {
-      "pixels": [
-        "17",
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 5
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "43": {
+    "inputs": {
+      "filename_prefix": "inpainted",
+      "images": [
+        "7",
         0
-      ],
-      "vae": [
-        "1",
-        2
       ]
     },
-    "class_type": "VAEEncode",
+    "class_type": "SaveImage",
     "_meta": {
-      "title": "VAE Encode"
+      "title": "Save Image"
     }
   }
 }
