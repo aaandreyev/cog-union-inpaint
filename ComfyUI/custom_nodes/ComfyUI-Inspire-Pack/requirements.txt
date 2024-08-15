@@ -1,0 +1,3 @@
+matplotlib
+cachetools
+numpy<2
