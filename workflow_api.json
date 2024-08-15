@@ -126,7 +126,7 @@
   },
   "17": {
     "inputs": {
-      "image": "/tmp/inputs/input.jpg",
+      "image": "image.png",
       "upload": "image"
     },
     "class_type": "LoadImage",

@@ -54,16 +54,16 @@ class Predictor(BasePredictor):
     def update_workflow(self, workflow, **kwargs):
         # Below is an example showing how to get the node you need and update the inputs
 
-        input_image_url = workflow["11"]["inputs"]
+        input_image_url = workflow["17"]["inputs"]
         input_image_url["image"] = kwargs["image_filename"]
 
-        positive_prompt = workflow["6"]["inputs"]
+        positive_prompt = workflow["2"]["inputs"]
         positive_prompt["text"] = kwargs["prompt"]
 
-        negative_prompt = workflow["7"]["inputs"]
+        negative_prompt = workflow["3"]["inputs"]
         negative_prompt["text"] = f"nsfw, {kwargs['negative_prompt']}"
 
-        sampler = workflow["3"]["inputs"]
+        sampler = workflow["6"]["inputs"]
         sampler["cfg"] = kwargs["cfg"]
         sampler["steps"] = kwargs["steps"]
         sampler["seed"] = kwargs["seed"]
