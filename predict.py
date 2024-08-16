@@ -63,6 +63,8 @@ class Predictor(BasePredictor):
         negative_prompt = workflow["3"]["inputs"]
         negative_prompt["text"] = f"nsfw, {kwargs['negative_prompt']}"
 
+        latent_image = workflow["42"]["inputs"]
+        latent_image["batch_size"] = kwargs["batch"]
         sampler = workflow["6"]["inputs"]
         sampler["cfg"] = kwargs["cfg"]
         sampler["steps"] = kwargs["steps"]
@@ -86,6 +88,12 @@ class Predictor(BasePredictor):
             default=6,
             ge=1,
             le=50,
+        ),
+        batch: int = Input(
+            description="Number of output images",
+            default=1,
+            ge=1,
+            le=10,
         ),
         cfg: float = Input(
             description="Guidance scale",
@@ -117,7 +125,8 @@ class Predictor(BasePredictor):
             image_filename=image_filename,
             seed=seed,
             steps=steps,
-            cfg=cfg
+            cfg=cfg,
+            batch=batch
         )
 
         wf = self.comfyUI.load_workflow(workflow)
