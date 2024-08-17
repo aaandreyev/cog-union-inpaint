@@ -65,6 +65,9 @@ class Predictor(BasePredictor):
 
         latent_image = workflow["42"]["inputs"]
         latent_image["batch_size"] = kwargs["batch"]
+        latent_image["width"] = kwargs["width"]
+        latent_image["height"] = kwargs["height"]
+
         sampler = workflow["6"]["inputs"]
         sampler["cfg"] = kwargs["cfg"]
         sampler["steps"] = kwargs["steps"]
@@ -94,6 +97,18 @@ class Predictor(BasePredictor):
             default=1,
             ge=1,
             le=10,
+        ),
+        width: int = Input(
+            description="width",
+            default=1024,
+            ge=768,
+            le=2048,
+        ),
+        height: int = Input(
+            description="height",
+            default=1024,
+            ge=768,
+            le=2048,
         ),
         cfg: float = Input(
             description="Guidance scale",
@@ -126,7 +141,9 @@ class Predictor(BasePredictor):
             seed=seed,
             steps=steps,
             cfg=cfg,
-            batch=batch
+            batch=batch,
+            width=width,
+            height=height,
         )
 
         wf = self.comfyUI.load_workflow(workflow)
